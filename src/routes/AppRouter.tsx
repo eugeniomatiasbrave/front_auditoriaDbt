@@ -1,24 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "../App";
 
-// Páginas públicas
-import { Landing } from "../pages/public/Landing";
-import { CalculateInsu } from "../pages/public/CalculateInsu";
-import { LawDbt } from "../pages/public/LawDbt";
-import { Vademecum } from "../pages/public/Vademecum";
-
-// Páginas de autenticación
-import { Login } from "../pages/auth/Login";
-import { Register } from "../pages/auth/Register";
-
-// Páginas privadas
-import { Profile } from "../pages/private/Profile";
-import { Settings } from "../pages/private/Settings";
-import { UserDashboard } from "../pages/private/UserDashboard";
-
-// Páginas de admin
-import { AdminDashboard } from "../pages/admin/AdminDashboard";
-import { MedicineManager } from "../pages/admin/MedicineManager";
+// Páginas (para rutas)
+import { Landing, CalculateInsu, LawDbt, Vademecum } from "../pages/public";
+import { Login, Register } from "../pages/auth";
+import { Profile, Settings, UserDashboard, MedicationManager } from '../pages/private'
 
 export const AppRouter = () => {
 	return (
@@ -34,8 +20,7 @@ export const AppRouter = () => {
 					<Route path="dashboard" element={<UserDashboard />} />
 					<Route path="profile" element={<Profile />} />
 					<Route path="settings" element={<Settings />} />
-					<Route path="admin" element={<AdminDashboard />} />
-					<Route path="admin/medicines" element={<MedicineManager />} />
+					<Route path="medication" element={<MedicationManager />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

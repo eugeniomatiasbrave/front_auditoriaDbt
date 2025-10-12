@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 
-export const Navigation =() => {
-	const isLoggedIn = true // true: user logged in. False: guest
-	const isAdmin = false // true: admin user. False: regular user
+export const Navbar = () => {
+	const isLoggedIn = false // true: user logged in. False: public user
 
 	return (
 		<nav className="bg-sky-900 text-white shadow-lg">
@@ -54,20 +53,27 @@ export const Navigation =() => {
 							</>
 						) : (
 							<>
-								<Link to="/dashboard" className="hover:bg-sky-600 px-3 py-2 rounded">
-									Dashboard
+								<Link
+									to="/medication"
+									className="hover:bg-sky-600 px-3 py-2 rounded transition-colors"
+								>
+									Medicamentos
 								</Link>
-								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded">
+								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded transition-colors">
 									Perfil
 								</Link>
-								{isAdmin && (
-									<Link
-										to="/admin"
-										className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded"
-									>
-										Admin
-									</Link>
-								)}
+								<Link to="/settings" className="hover:bg-sky-600 px-3 py-2 rounded transition-colors">
+									Settings
+								</Link>
+								<button
+									className="hover:bg-red-600 px-3 py-2 rounded transition-colors text-red-200 hover:text-white"
+									onClick={() => {
+										// Aquí irá la lógica de logout
+										console.log('Logout clicked');
+									}}
+								>
+									Cerrar Sesión
+								</button>
 							</>
 						)}
 					</div>
