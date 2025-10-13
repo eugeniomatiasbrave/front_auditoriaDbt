@@ -10,22 +10,24 @@ const api = axios.create({ baseURL: API_BASE_URL });
 // Tipos para las respuestas de la API
 // Modularizar los Types mas adelante
 export interface ApiResponse<T = unknown> {
-  data: T;
+  success: boolean;
   message?: string;
-  status: number;
+  data: T;
 }
 
 export interface ApiError {
+  success: boolean;
   message: string;
-  status?: number;
-  code?: string;
+  error?: string;
 }
 
 // Función para hacer peticiones GET
 export const getData = async <T = unknown>(url: string): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await api.get(url);
-    return response.data;
+
+    // response.data sería: [medications] ← Esto debería funcionar
+    return response.data as T;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
     console.log("Error:", axiosError);
