@@ -5,3 +5,5 @@ export { Navbar } from "./layout/Navbar";
 // Common components
 export { Loading } from "./common/Loading";
 export { Error } from "./common/Error";
+// Page components
+export { LawDbtArg } from "./views/LawDbtArg";
