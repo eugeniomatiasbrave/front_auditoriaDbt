@@ -6,9 +6,15 @@ import { Loading } from '../../components';
 interface Medication {
 	id: string | number;
 	name: string;
-	category: string;
-	description: string;
+	presentation: string,
+	potency: string,
 	drug: string;
+	laboratory: string,
+	coverage: number,
+	units: number,
+	troquel: string,
+	category: string,
+	description: string
 }
 
 export const Vademecum = () => {
@@ -68,17 +74,31 @@ export const Vademecum = () => {
 					{medications.map((medication) => (
 						<div
 							key={medication.id}
-							className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-						>
+							className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
 							<h3 className="text-lg font-semibold text-gray-900 mb-2">
 								{medication.name}
 							</h3>
 							<div className="space-y-2 text-sm">
 								<p className="text-gray-600">
-									<span className="font-medium">Categoría:</span> {medication.category}
+									<span className="font-medium">Principio activo:</span> {medication.drug}
 								</p>
 								<p className="text-gray-600">
-									<span className="font-medium">Principio activo:</span> {medication.drug}
+									<span className="font-medium">Potencia:</span> {medication.potency}
+								</p>
+								<p className="text-gray-600">
+									<span className="font-medium">Laboratorio:</span> {medication.laboratory}
+								</p>
+								<p className="text-gray-600">
+									<span className="font-medium">Cobertura:</span> {medication.coverage}%
+								</p>
+								<p className="text-gray-600">
+									<span className="font-medium">Unidades:</span> {medication.units}
+								</p>
+								<p className="text-gray-600">
+									<span className="font-medium">Troquel:</span> {medication.troquel}
+								</p>
+								<p className="text-gray-600">
+									<span className="font-medium">Categoría:</span> {medication.category}
 								</p>
 								<p className="text-gray-700">
 									<span className="font-medium">Descripción:</span> {medication.description}
