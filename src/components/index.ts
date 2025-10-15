@@ -8,3 +8,4 @@ export { Error } from "./common/Error";
 // Page components
 export { LawDbtArg } from "./views/LawDbtArg";
 export { SelectCategory } from "./views/SelectCategory";
+export { SelectMedication } from "./views/SelectMedication";

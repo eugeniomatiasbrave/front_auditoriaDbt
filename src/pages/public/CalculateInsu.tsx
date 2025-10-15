@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { SelectCategory } from "../../components";
+import { SelectCategory, SelectMedication } from "../../components";
 
 
 
 export const CalculateInsu = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
+	const [selectedMedication, setSelectedMedication] = useState<number>(1);
 
 	return (
 		<>
@@ -31,6 +32,11 @@ export const CalculateInsu = () => {
 					<SelectCategory
 						selectedCategory={selectedCategory}
 						setSelectedCategory={setSelectedCategory}
+					/>
+
+					<SelectMedication
+						selectedMedication={selectedMedication}
+						setSelectedMedication={setSelectedMedication}
 					/>
 
 					<div className="flex gap-6">

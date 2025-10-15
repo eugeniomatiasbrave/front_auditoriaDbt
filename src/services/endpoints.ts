@@ -8,4 +8,5 @@ export const endpoints = {
   MEDICATION_DETAILS: (id: string) => `${API_BASE_URL}/api/medications/${id}`,
   // Categories
   CATEGORIES_ALL: `${API_BASE_URL}/api/categories`, // Todas las categorías
+  CATEGORIES_MEDICATIONS: (categoryId: number) => `${API_BASE_URL}/api/categories/${categoryId}/medications`, // Medicamentos por categoría
 };

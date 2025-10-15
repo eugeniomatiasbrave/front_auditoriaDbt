@@ -46,7 +46,7 @@ export const SelectCategory = ({ selectedCategory, setSelectedCategory }: Select
 				className="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-sky-400"
 				disabled={loading}
 			>
-				<option value="">-- --</option>
+				<option value="" >Categorías</option>
 				{categories.map(cat => (
 					<option key={cat.id} value={cat.id.toString()}>
 						{cat.name}
