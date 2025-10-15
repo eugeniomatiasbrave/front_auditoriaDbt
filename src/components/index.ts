@@ -7,3 +7,4 @@ export { Loading } from "./common/Loading";
 export { Error } from "./common/Error";
 // Page components
 export { LawDbtArg } from "./views/LawDbtArg";
+export { SelectCategory } from "./views/SelectCategory";
