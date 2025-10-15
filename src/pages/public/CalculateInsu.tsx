@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { SelectCategory, SelectMedication } from "../../components";
 
-
-
 export const CalculateInsu = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [selectedMedication, setSelectedMedication] = useState<number>(0);
 	const [uiDia, setUiDia] = useState<number>(6);
-	const [dispensa, setDispensa] = useState<number>(30); // Valor por defecto a 30 días
+	const [dispensa, setDispensa] = useState<number>(30);
+	const [resultado, setResultado] = useState<number | null>(null); // Estado para mostrar el resultado
 
-
- const unidadesCaja = selectedMedication
- const unidadesDispensa = uiDia * dispensa;
- const cajasDispensa=unidadesDispensa/unidadesCaja;
-	   //si cajasDispensa no es entero redondear al alza;
-
+	const handleBox = (e: React.FormEvent) => {
+		e.preventDefault(); // Evita el submit por defecto
+		if (selectedMedication > 0 && uiDia >= 6 && uiDia <= 200) {
+			const unidadesCaja = selectedMedication;
+			const unidadesDispensa = uiDia * dispensa;
+			const cajasDispensa = unidadesDispensa / unidadesCaja;
+			const cajasDispensaRedondeadas = Math.ceil(cajasDispensa);
+			setResultado(cajasDispensaRedondeadas);
+		} else {
+			setResultado(null); // O puedes mostrar un mensaje de error
+		}
+	};
 
 	return (
 		<>
@@ -25,7 +30,7 @@ export const CalculateInsu = () => {
 					<p className="mb-2">Calcular las cajas a dispensar por los coordinadores ante la falla del sistema dispensador.</p>
 					<p>Dar respuesta a los Afiliados en el contact center respecto a la cantidad por recibir.</p>
 				</div>
-				<form className="space-y-6">
+				<form className="space-y-6" onSubmit={handleBox}>
 					<div>
 						<h6 className="text-lg font-semibold mb-2 text-sky-600">CALCULADOR DE INSULINAS A DISPENSAR</h6>
 						<p className="mb-4 text-sm text-gray-600">Ingresar los datos en los campos y realizar el cálculo.</p>
@@ -45,7 +50,6 @@ export const CalculateInsu = () => {
 						selectedCategory={selectedCategory}
 						setSelectedCategory={setSelectedCategory}
 					/>
-
 					<SelectMedication
 						selectedMedication={selectedMedication}
 						setSelectedMedication={setSelectedMedication}
@@ -84,11 +88,6 @@ export const CalculateInsu = () => {
 							/> Trimestral
 						</label>
 					</div>
-					<p className="text-sm text-gray-500">
-						Unidades Caja: {selectedMedication} - Dispensa: {dispensa} días - UI/día: {uiDia}
-					</p>
-					<p>Unidades Totales: {cajasDispensa}</p>
-					<p>Cajas a dispensar: {Math.ceil(cajasDispensa)}</p>
 					<div className="flex gap-4">
 						<button className="bg-sky-600 text-white px-4 py-2 rounded hover:bg-sky-700 transition" type="submit">
 							Calcular
@@ -96,14 +95,20 @@ export const CalculateInsu = () => {
 						<button
 							className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition"
 							type="reset"
+							onClick={() => setResultado(null)}
 						>
 							Reset
 						</button>
 					</div>
+					{resultado !== null && (
+						<div className="mt-4 text-lg font-bold text-sky-700">
+							Cajas a dispensar: {resultado}
+						</div>
+					)}
 					<div className="mt-4 text-xs text-gray-500">
 						<p>* Rango aceptable de UI es entre 6 y 200 UI.</p>
 						<p>* Las cajas de insulinas no son divisibles, se entregan cajas enteras.</p>
-						<p>* Cajas a dispensar mensual o trimestral según convenio.</p>
+						<p>* Cajas a dispensar mensual, bimestral o trimestral según convenio.</p>
 					</div>
 				</form>
 			</div>
