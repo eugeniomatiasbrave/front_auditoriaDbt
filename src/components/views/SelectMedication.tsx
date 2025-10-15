@@ -9,7 +9,8 @@ type Medication = {
 	potency: string;
 	drug: string;
 	laboratory: string;
-	converage: string;
+	converage: number;
+	units: number
 	categoryId: number;
 	description: string;
 	createdAt: string;
@@ -45,7 +46,7 @@ export const SelectMedication = ({ selectedMedication, setSelectedMedication, ca
 
 	return (
 	<div>
-		<h3>Medicamentos (insulinas)</h3>
+		<h3>Medicamentos - Unidades caja</h3>
 		<select 
 			value={selectedMedication}
 			onChange={e => setSelectedMedication(Number(e.target.value))}
@@ -54,8 +55,8 @@ export const SelectMedication = ({ selectedMedication, setSelectedMedication, ca
 			>
 			<option value="">Seleccione un medicamento</option>
 			{medications.map(med => (
-				<option key={med.id} value={med.id.toString()}>
-					{med.name}
+				<option key={med.id} value={med.units.toString()}>
+					{med.name} - {med.units}
 				</option>
 			))}
 		</select>

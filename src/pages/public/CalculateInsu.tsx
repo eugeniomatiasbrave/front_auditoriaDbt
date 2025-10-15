@@ -5,7 +5,16 @@ import { SelectCategory, SelectMedication } from "../../components";
 
 export const CalculateInsu = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
-	const [selectedMedication, setSelectedMedication] = useState<number>(1);
+	const [selectedMedication, setSelectedMedication] = useState<number>(0);
+	const [uiDia, setUiDia] = useState<number>(6);
+	const [dispensa, setDispensa] = useState<number>(30); // Valor por defecto a 30 días
+
+
+ const unidadesCaja = selectedMedication
+ const unidadesDispensa = uiDia * dispensa;
+ const cajasDispensa=unidadesDispensa/unidadesCaja;
+	   //si cajasDispensa no es entero redondear al alza;
+
 
 	return (
 		<>
@@ -20,6 +29,7 @@ export const CalculateInsu = () => {
 					<div>
 						<h6 className="text-lg font-semibold mb-2 text-sky-600">CALCULADOR DE INSULINAS A DISPENSAR</h6>
 						<p className="mb-4 text-sm text-gray-600">Ingresar los datos en los campos y realizar el cálculo.</p>
+						<h3>Unidades día</h3>
 						<input
 							type="number"
 							placeholder="Ingresar las UI día que se aplica el paciente"
@@ -27,6 +37,8 @@ export const CalculateInsu = () => {
 							min={6}
 							max={200}
 							className="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-sky-400"
+							value={uiDia}
+							onChange={e => setUiDia(Number(e.target.value))}
 						/>
 					</div>
 					<SelectCategory
@@ -39,14 +51,16 @@ export const CalculateInsu = () => {
 						setSelectedMedication={setSelectedMedication}
 						categoryId={selectedCategory}
 					/>
-
+					<h3>Tipo de dispensa</h3>
 					<div className="flex gap-6">
 						<label className="flex items-center gap-2">
 							<input
 								type="radio"
 								name="dispensa"
 								className="accent-sky-600"
-								value="mensual"
+								value={30}
+								checked={dispensa === 30}
+								onChange={e => setDispensa(Number(e.target.value))}
 							/> Mensual
 						</label>
 						<label className="flex items-center gap-2">
@@ -54,7 +68,9 @@ export const CalculateInsu = () => {
 								type="radio"
 								name="dispensa"
 								className="accent-sky-600"
-								value="bimestral"
+								value={60}
+								checked={dispensa === 60}
+								onChange={e => setDispensa(Number(e.target.value))}
 							/> Bimestral
 						</label>
 						<label className="flex items-center gap-2">
@@ -62,10 +78,17 @@ export const CalculateInsu = () => {
 								type="radio"
 								name="dispensa"
 								className="accent-sky-600"
-								value="trimestral"
+								value={90}
+								checked={dispensa === 90}
+								onChange={e => setDispensa(Number(e.target.value))}
 							/> Trimestral
 						</label>
 					</div>
+					<p className="text-sm text-gray-500">
+						Unidades Caja: {selectedMedication} - Dispensa: {dispensa} días - UI/día: {uiDia}
+					</p>
+					<p>Unidades Totales: {cajasDispensa}</p>
+					<p>Cajas a dispensar: {Math.ceil(cajasDispensa)}</p>
 					<div className="flex gap-4">
 						<button className="bg-sky-600 text-white px-4 py-2 rounded hover:bg-sky-700 transition" type="submit">
 							Calcular
