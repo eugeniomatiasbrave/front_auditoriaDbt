@@ -37,6 +37,7 @@ export const CalculateInsu = () => {
 					<SelectMedication
 						selectedMedication={selectedMedication}
 						setSelectedMedication={setSelectedMedication}
+						categoryId={selectedCategory}
 					/>
 
 					<div className="flex gap-6">
