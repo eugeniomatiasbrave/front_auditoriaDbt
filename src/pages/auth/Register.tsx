@@ -1,4 +1,8 @@
 import { useForm } from "react-hook-form";
+import { postData, ApiResponse } from '../../services/axiosService.js';
+import { endpoints } from "../../services/endpoints";
+
+
 
 export const Register = () => {
 
@@ -10,14 +14,15 @@ export const Register = () => {
 			<form
 			
 				className="bg-white p-6 rounded shadow-md space-y-4 "
-				onSubmit={handleSubmit((values) => {
-					console.log(values)
+				onSubmit={handleSubmit( async (values) => {
+					const response = await postData<ApiResponse>(endpoints.REGISTER, values);
+					console.log(response);
 				})} >
 				<div>
 					<label className="block text-gray-700">Nombre de usuario</label>
 					<input
 						type="text"
-						{...register("username", { required: "Este campo es obligatorio" } )}
+						{...register("firstName", { required: "Este campo es obligatorio" } )}
 						className=" text-black mt-1 block w-full border border-gray-300 rounded-md p-2"
 					  	placeholder="Ingrese su nombre de usuario"	
 					/>
@@ -27,7 +32,7 @@ export const Register = () => {
 					<label className="block text-gray-700">Apellido</label>
 					<input
 						type="text"
-						{...register("lastname", { required: "Este campo es obligatorio" })}
+						{...register("lastName", { required: "Este campo es obligatorio" })}
 						className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2"
 						placeholder="Ingrese su apellido"
 					/>
