@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
-	const isLoggedIn = false // true: user logged in. False: public user
+	
 
 	return (
 		<nav className="bg-sky-900 text-white shadow-lg">
@@ -36,7 +36,7 @@ export const Navbar = () => {
 					</div>
 
 					<div className="flex items-center space-x-4">
-						{!isLoggedIn ? (
+					
 							<>
 								<Link
 									to="/login"
@@ -51,7 +51,7 @@ export const Navbar = () => {
 									Registrarse
 								</Link>
 							</>
-						) : (
+						
 							<>
 								<Link
 									to="/medication"
@@ -69,13 +69,14 @@ export const Navbar = () => {
 									className="hover:bg-red-600 px-3 py-2 rounded transition-colors text-red-200 hover:text-white"
 									onClick={() => {
 										// Aquí irá la lógica de logout
+
 										console.log('Logout clicked');
 									}}
 								>
 									Cerrar Sesión
 								</button>
 							</>
-						)}
+					
 					</div>
 				</div>
 			</div>

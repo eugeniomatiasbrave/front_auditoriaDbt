@@ -30,10 +30,10 @@ export const CalculateInsu = () => {
 					<p className="mb-2">Calcular las cajas a dispensar por los coordinadores ante la falla del sistema dispensador.</p>
 					<p>Dar respuesta a los Afiliados en el contact center respecto a la cantidad por recibir.</p>
 				</div>
-				<form className="space-y-6" onSubmit={handleBox}>
+				<form className="space-y-1" onSubmit={handleBox}>
 					<div>
 						<h6 className="text-lg font-semibold mb-2 text-sky-600">CALCULADOR DE INSULINAS A DISPENSAR</h6>
-						<p className="mb-4 text-sm text-gray-600">Ingresar los datos en los campos y realizar el cálculo.</p>
+	
 						<h3>Unidades día</h3>
 						<input
 							type="number"
@@ -46,15 +46,19 @@ export const CalculateInsu = () => {
 							onChange={e => setUiDia(Number(e.target.value))}
 						/>
 					</div>
-					<SelectCategory
-						selectedCategory={selectedCategory}
-						setSelectedCategory={setSelectedCategory}
-					/>
-					<SelectMedication
-						selectedMedication={selectedMedication}
-						setSelectedMedication={setSelectedMedication}
-						categoryId={selectedCategory}
-					/>
+					<div className="mb-2">
+						<SelectCategory
+							selectedCategory={selectedCategory}
+							setSelectedCategory={setSelectedCategory}
+						/>
+					</div>
+					<div className="mb-2">
+						<SelectMedication
+							selectedMedication={selectedMedication}
+							setSelectedMedication={setSelectedMedication}
+							categoryId={selectedCategory}
+						/>
+					</div>
 					<h3>Tipo de dispensa</h3>
 					<div className="flex gap-6">
 						<label className="flex items-center gap-2">
@@ -88,7 +92,7 @@ export const CalculateInsu = () => {
 							/> Trimestral
 						</label>
 					</div>
-					<div className="flex gap-4">
+					<div className="flex gap-4 my-6">
 						<button className="bg-sky-600 text-white px-4 py-2 rounded hover:bg-sky-700 transition" type="submit">
 							Calcular
 						</button>
@@ -101,7 +105,7 @@ export const CalculateInsu = () => {
 						</button>
 					</div>
 					{resultado !== null && (
-						<div className="mt-4 text-lg font-bold text-sky-700">
+						<div className="mt-8 mb-4 px-6 py-4 text-xl font-bold text-sky-700 bg-sky-50 rounded-lg shadow border border-sky-200 flex items-center justify-center">
 							Cajas a dispensar: {resultado}
 						</div>
 					)}
