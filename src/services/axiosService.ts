@@ -41,7 +41,7 @@ export const postData = async <T = unknown>(
   data: unknown
 ): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.post(url, data);
+    const response: AxiosResponse<T> = await api.post(url, data, { withCredentials: true });
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;

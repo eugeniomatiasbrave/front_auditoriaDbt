@@ -17,19 +17,19 @@ export const Navbar = () => {
 					<div className="hidden md:flex space-x-4">
 						<Link
 							to="/calculate"
-							className="hover:bg-sky-600 px-3 py-2 rounded transition-colors"
+							className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
 						>
 							Calcular Insulina
 						</Link>
 						<Link
 							to="/vademecum"
-							className="hover:bg-sky-600 px-3 py-2 rounded transition-colors"
+							className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
 						>
 							Vademécum
 						</Link>
 						<Link
 							to="/law"
-							className="hover:bg-sky-600 px-3 py-2 rounded transition-colors"
+							className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
 						>
 							Ley DBT
 						</Link>
@@ -40,13 +40,13 @@ export const Navbar = () => {
 							<>
 								<Link
 									to="/login"
-									className="hover:bg-sky-600 px-4 py-2 rounded transition-colors"
+									className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
 								>
 									Iniciar Sesión
 								</Link>
 								<Link
 									to="/register"
-									className="bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded font-medium transition-colors"
+									className=" hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
 								>
 									Registrarse
 								</Link>
@@ -55,18 +55,18 @@ export const Navbar = () => {
 							<>
 								<Link
 									to="/medication"
-									className="hover:bg-sky-600 px-3 py-2 rounded transition-colors"
+									className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
 								>
 									Medicamentos
 								</Link>
-								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded transition-colors">
+								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Perfil
 								</Link>
-								<Link to="/settings" className="hover:bg-sky-600 px-3 py-2 rounded transition-colors">
+								<Link to="/settings" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Settings
 								</Link>
 								<button
-									className="hover:bg-red-600 px-3 py-2 rounded transition-colors text-red-200 hover:text-white"
+									className="hover:bg-red-600 px-3 py-2 rounded  font-medium transition-colors text-red-200 hover:text-white"
 									onClick={() => {
 										// Aquí irá la lógica de logout
 
