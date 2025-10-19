@@ -12,5 +12,6 @@ export const endpoints = {
   // Register and Login
   REGISTER: `${API_BASE_URL}/api/sessions/register`,
   LOGIN: `${API_BASE_URL}/api/sessions/login`,
+  LOGOUT: `${API_BASE_URL}/api/sessions/logout`,
 
 };

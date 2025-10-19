@@ -65,16 +65,9 @@ export const Navbar = () => {
 								<Link to="/settings" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Settings
 								</Link>
-								<button
-									className="hover:bg-red-600 px-3 py-2 rounded  font-medium transition-colors text-red-200 hover:text-white"
-									onClick={() => {
-										// Aquí irá la lógica de logout
-
-										console.log('Logout clicked');
-									}}
-								>
+								<Link to="/logout" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Cerrar Sesión
-								</button>
+								</Link>
 							</>
 					
 					</div>

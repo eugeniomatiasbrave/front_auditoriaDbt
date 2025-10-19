@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Landing, CalculateInsu, LawDbt, Vademecum } from "./pages/public";
-import { Login, Register } from "./pages/auth";
+import { Login, Register, Logout} from "./pages/auth";
 import { Profile, Settings, UserDashboard, MedicationManager } from './pages/private'
 import { Header, Navbar, Footer } from './components'
 //import { ProtectedRoute } from './routes/ProtectedRoute'
@@ -27,6 +27,7 @@ export const App = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
               <Route path="medication" element={<MedicationManager />} />
+              <Route path="logout" element={<Logout />} />
             {/* </Route> */}
 
             {/* Ruta 404 */}
