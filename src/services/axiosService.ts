@@ -24,7 +24,7 @@ export interface ApiError {
 // Función para hacer peticiones GET
 export const getData = async <T = unknown>(url: string): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.get(url);
+    const response: AxiosResponse<T> = await api.get(url, { withCredentials: true });
 
     // response.data sería: [medications] ← Esto debería funcionar
     return response.data as T;

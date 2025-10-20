@@ -13,5 +13,8 @@ export const endpoints = {
   REGISTER: `${API_BASE_URL}/api/sessions/register`,
   LOGIN: `${API_BASE_URL}/api/sessions/login`,
   LOGOUT: `${API_BASE_URL}/api/sessions/logout`,
+  // User Profile
+  USER_PROFILE: `${API_BASE_URL}/api/users/profile`,
+
 
 };
