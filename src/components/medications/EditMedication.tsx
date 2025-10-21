@@ -10,6 +10,7 @@ export const EditMedication = () => {
 	const navigate = useNavigate();
 	const { register, handleSubmit, reset } = useForm<IMedication>();
 	const [loading, setLoading] = useState(true);
+	const [originalData, setOriginalData] = useState<IMedication | null>(null);
 
 	useEffect(() => {
 		// Pedimos los datos del medicamento al backend
@@ -20,6 +21,7 @@ export const EditMedication = () => {
 			);
 			if (response.success && response.data) {
 				reset(response.data); // Cargamos los datos en el formulario
+				setOriginalData(response.data); // Guarda los datos originales
 			}
 			setLoading(false);
 		};
@@ -29,7 +31,7 @@ export const EditMedication = () => {
 	if (loading) {
 		return <div className="text-center mt-8">Cargando...</div>;
 	}
-
+ 
 	return (
 		<div className="mt-5">
 			<h2 className="text-3xl font-bold text-sky-800 mb-8 text-center">
@@ -158,7 +160,7 @@ export const EditMedication = () => {
 							type="submit"
 							className="w-full bg-sky-600 font-bold text-white p-2 rounded hover:bg-sky-700"
 						>
-							Guardar Cambios
+							Guardar
 						</button>
 						<button
 							type="button"
@@ -167,9 +169,18 @@ export const EditMedication = () => {
 						>
 							Cancelar
 						</button>
+						<button
+							type="button"
+							className="w-full bg-yellow-500 font-bold text-white p-2 rounded hover:bg-yellow-500"
+							onClick={() => originalData && reset(originalData)}
+						>
+							Resetear
+						</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	);
 };
+
+
