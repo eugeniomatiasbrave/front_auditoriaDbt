@@ -110,7 +110,7 @@ export const MedicationManager = () => {
 	return (
 		<div>
 			<h2 className="text-2xl text-sky-800 font-bold mb-6 text-center">Gestión de Medicamentos</h2>
-			<div className="flex justify-between items-center mb-4">
+			<div className="flex justify-between items-center mb-4 ">
 				<button
 					className="bg-sky-700 hover:bg-sky-800 text-white font-semibold py-2 px-4 rounded shadow"
 					onClick={() => { navigate('/medication/create') }}
@@ -125,7 +125,7 @@ export const MedicationManager = () => {
 					onChange={e => setSearch(e.target.value)}
 				/>
 			</div>
-			<div className="overflow-x-auto">
+			<div className="overflow-x-auto rounded-lg shadow-lg border border-gray-300 ">
 				<table className="min-w-full bg-white text-sm text-blue-950 rounded-lg shadow-md">
 					<thead>
 						<tr className="bg-sky-100 text-sky-800">

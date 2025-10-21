@@ -7,6 +7,8 @@ export const endpoints = {
   MEDICATIONS: `${API_BASE_URL}/api/medications`,
   MEDICATION_DETAILS: (id: string) => `${API_BASE_URL}/api/medications/${id}`,
   MEDICATION_DELETE: (id: string) => `${API_BASE_URL}/api/medications/${id}`,
+  MEDICATION_CREATE: `${API_BASE_URL}/api/medications`,
+  MEDICATION_UPDATE: (id: string) => `${API_BASE_URL}/api/medications/${id}`,
   // Categories
   CATEGORIES_ALL: `${API_BASE_URL}/api/categories`, // Todas las categorías
   CATEGORIES_MEDICATIONS: (categoryId: number) => `${API_BASE_URL}/api/categories/${categoryId}/medications`, // Medicamentos por categoría
@@ -16,6 +18,4 @@ export const endpoints = {
   LOGOUT: `${API_BASE_URL}/api/sessions/logout`,
   // User Profile
   USER_PROFILE: `${API_BASE_URL}/api/users/profile`,
-
-
 };
