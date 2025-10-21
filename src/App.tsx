@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Landing, CalculateInsu, LawDbt, Vademecum } from "./pages/public";
-import { Login, Register, Logout} from "./pages/auth";
-import { Profile, Settings, UserDashboard, MedicationManager } from './pages/private'
-import { Header, Navbar, Footer } from './components'
+import { Login, Register, Logout } from "./pages/auth";
+import { Profile, UserDashboard, MedicationManager } from './pages/private'
+import { Header,Navbar,Footer,EditMedication,DetailsMedication,CreateMedication } from './components'
+
+
 //import { ProtectedRoute } from './routes/ProtectedRoute'
 
 export const App = () => {
@@ -21,14 +23,18 @@ export const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
 
-            {/* Rutas protegidas agrupadas */}
-           {/* <Route element={<ProtectedRoute />}> */}
-              <Route path="dashboard" element={<UserDashboard />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="medication" element={<MedicationManager />} />
-              <Route path="logout" element={<Logout />} />
-            {/* </Route> */}
+            {/* Rutas protegidas */}
+            <Route path="dashboard" element={<UserDashboard />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="logout" element={<Logout />} />
+
+            {/* Rutas de medicamentos agrupadas */}
+            <Route path="medication" >
+              <Route index element={<MedicationManager />} />
+              <Route path="create" element={<CreateMedication />} />
+              <Route path=":id/edit" element={<EditMedication />} />
+              <Route path=":id" element={<DetailsMedication />} />
+            </Route>
 
             {/* Ruta 404 */}
             <Route path="*" element={<h1>404 - Not Found</h1>} />

@@ -68,7 +68,7 @@ export const putData = async <T = unknown>(
 // Función para hacer peticiones DELETE
 export const deleteData = async <T = unknown>(url: string): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.delete(url);
+    const response: AxiosResponse<T> = await api.delete(url, { withCredentials: true });
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;

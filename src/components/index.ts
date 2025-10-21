@@ -9,3 +9,8 @@ export { Error } from "./common/Error";
 export { LawDbtArg } from "./views/LawDbtArg";
 export { SelectCategory } from "./views/SelectCategory";
 export { SelectMedication } from "./views/SelectMedication";
+// Medication components
+export { CreateMedication } from "./medications/CreateMedication";
+export { DetailsMedication } from "./medications/DetailsMedication";
+export { EditMedication } from "./medications/EditMedication";
+export { DeleteMedicationModal } from "./medications/DeleteMedicationModal";

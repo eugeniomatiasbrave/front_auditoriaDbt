@@ -62,9 +62,6 @@ export const Navbar = () => {
 								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Perfil
 								</Link>
-								<Link to="/settings" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
-									Settings
-								</Link>
 								<Link to="/logout" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
 									Cerrar Sesión
 								</Link>

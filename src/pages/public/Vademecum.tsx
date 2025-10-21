@@ -13,7 +13,7 @@ interface Medication {
 	coverage: number,
 	units: number,
 	troquel: string,
-	category: string,
+	categoryId: string,
 	description: string
 }
 
@@ -98,7 +98,7 @@ export const Vademecum = () => {
 									<span className="font-medium">Troquel:</span> {medication.troquel}
 								</p>
 								<p className="text-gray-600">
-									<span className="font-medium">Categoría:</span> {medication.category}
+									<span className="font-medium">Categoría:</span> {medication.categoryId}
 								</p>
 								<p className="text-gray-700">
 									<span className="font-medium">Descripción:</span> {medication.description}
