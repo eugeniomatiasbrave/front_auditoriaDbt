@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IUser } from "../../types/interfaces";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 export const Login = () => {
@@ -15,37 +16,62 @@ export const Login = () => {
 	const isAuthenticated = auth?.isAuthenticated;
 
 	useEffect(() => {
-			if (isAuthenticated) {
-				navigate("/userdashboard");
-			}
-		}, [isAuthenticated, navigate]);
+		if (isAuthenticated) {
+			navigate("/userdashboard");
+		}
+	}, [isAuthenticated, navigate]);
+
+	const handleBack = () => {
+            navigate("/");
+    };
 
 	return (
-		<div className="max-w-md mx-auto mt-12">
-			<h2 className="text-2xl text-sky-800 font-bold mb-4">Iniciar Sesión</h2>
+		<div className="max-w-md mx-auto mt-12 relative">
+			 <button
+                type="button"
+                onClick={handleBack}
+                className="absolute top-1 right-1 text-xs bg-amber-300 border-amber-500 rounded text-gray-700 hover:text-sky-600 transition-colors px-3 py-1"
+            >
+                X
+            </button>
 			<form
 				className="bg-white p-6 rounded shadow-md space-y-4 "
 				onSubmit={handleSubmit(async (values) => {
 					try {
 						const response = await postData<ApiResponse>(endpoints.LOGIN, values);
-
-						if (response.success &&  response.data) {
+						if (response.success && response.data) {
 							auth?.login(response.data as IUser); // Actualiza el contexto global
+							Swal.fire({
+								icon: 'success',
+                                title: '¡Login exitoso!',
+                                text: response.message,
+								confirmButtonColor: '#0ea5e9',
+                            });
 							navigate("/userdashboard");
 						}
-						reset();
-						
-						//console.log("Usuario logueado:", response);
 					} catch (error: unknown) {
 						// Captura el error lanzado por Axios
 						if (axios.isAxiosError(error)) {
 							const apiError = error.response?.data as ApiError | undefined;
-							alert(apiError?.message || "Error inesperado");
+							Swal.fire({
+								icon: 'error',
+                                title: 'Error',
+                                text: apiError?.message || "Error inesperado",
+								confirmButtonColor: '#0ea5e9',
+                            });
 						} else {
-							alert("Error inesperado");
+							Swal.fire({
+								icon: 'error',
+								title: 'Error',
+                            text: error instanceof Error ? error.message : "Error inesperado",
+							confirmButtonColor: '#0ea5e9',
+                        });
 						}
+					} finally {
+						reset();
 					}
 				})} >
+					<h2 className="text-2xl text-sky-800 font-bold mb-4">Iniciar Sesión</h2>
 				<div>
 					<label className="block text-gray-700">Email</label>
 					<input type="email"

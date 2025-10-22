@@ -21,12 +21,11 @@ export interface ApiError {
   error?: string;
 }
 
-// Función para hacer peticiones GET
 export const getData = async <T = unknown>(url: string): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.get(url, { withCredentials: true });
-
-    // response.data sería: [medications] ← Esto debería funcionar
+    const response: AxiosResponse<T> = await api.get(url, {
+      withCredentials: true,
+    });
     return response.data as T;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
@@ -35,13 +34,14 @@ export const getData = async <T = unknown>(url: string): Promise<T> => {
   }
 };
 
-// Función para hacer peticiones POST
 export const postData = async <T = unknown>(
   url: string,
   data: unknown
 ): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.post(url, data, { withCredentials: true });
+    const response: AxiosResponse<T> = await api.post(url, data, {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
@@ -50,7 +50,6 @@ export const postData = async <T = unknown>(
   }
 };
 
-// Función para hacer peticiones PUT
 export const putData = async <T = unknown>(
   url: string,
   data: unknown
@@ -65,10 +64,11 @@ export const putData = async <T = unknown>(
   }
 };
 
-// Función para hacer peticiones DELETE
 export const deleteData = async <T = unknown>(url: string): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.delete(url, { withCredentials: true });
+    const response: AxiosResponse<T> = await api.delete(url, {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;

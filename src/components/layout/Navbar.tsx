@@ -56,23 +56,21 @@ export const Navbar = () => {
 									</Link>
 								</>
 							) : (
-								<>
-									<Link to="/userdashboard" className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors">
-										UserDashboard
-									</Link>
-									<Link
-										to="/medication"
-										className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
-									>
-										Medicamentos
-									</Link>
-									<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
-										Perfil
-									</Link>
-									<Link to="/logout" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
-										Cerrar Sesión
-									</Link>
-								</>
+								// Menú desplegable
+								<div className="relative group">
+									<button className="flex items-center px-4 py-2 bg-sky-600 rounded hover:bg-sky-800 transition-colors">
+										👤 {auth.user?.firstName || "Usuario"}
+										<svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+										</svg>
+									</button>
+									<div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10">
+										<Link to="/userdashboard" className="block px-4 py-2 hover:bg-gray-100">UserDashboard</Link>
+										<Link to="/medication" className="block px-4 py-2 hover:bg-gray-100">Medicamentos</Link>
+										<Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">Perfil</Link>
+										<Link to="/logout" className="block px-4 py-2 hover:bg-gray-100">Cerrar Sesión</Link>
+									</div>
+								</div>
 							)}
 						</>
 

@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "../../services/endpoints";
-import { postData, ApiResponse } from '../../services/axiosService.js';
-
+import { postData, ApiResponse, ApiError } from '../../services/axiosService.js';
+import { AuthContext } from "../../context/AuthContext";
+import Swal from 'sweetalert2';
 
 export const Logout = () => {
 	const [logoutting, setLoggingOut] = useState(false);
 	const navigate = useNavigate();
+	const auth = useContext(AuthContext);
 
 	const handleLogout = async () => {
 		setLoggingOut(true);
 		try {
 			const response = await postData<ApiResponse>(endpoints.LOGOUT, {});
+			auth?.logout();
 			if (response) {
-				navigate("/");
+				Swal.fire({
+					icon: 'success',
+					title: 'Sesión cerrada',
+					text: response.message || "Has cerrado sesión exitosamente.",
+					confirmButtonColor: '#0ea5e9',
+				}).then(() => {
+					navigate("/");
+				});
 			}
-		} catch (error) {
-			// Manejar errores
+		} catch (error: unknown) {
+			let errorMsg = "Error inesperado";
+			if ((error as ApiError)?.message) {
+				errorMsg = (error as ApiError).message;
+			}
+			Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: errorMsg,
+				confirmButtonColor: '#0ea5e9',
+			});
 			console.error("Logout error:", error);
 		} finally {
 			setLoggingOut(false);
