@@ -2,12 +2,23 @@ import { useForm } from "react-hook-form";
 import { postData, ApiResponse, ApiError } from '../../services/axiosService.js';
 import { endpoints } from "../../services/endpoints";
 import axios from "axios";
-
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { IUser } from "../../types/interfaces";
+import { useNavigate } from "react-router-dom";
 
 
 export const Login = () => {
+	const { register: registerForm, handleSubmit, reset } = useForm();
+	const auth = useContext(AuthContext);
+	const navigate = useNavigate();
+	const isAuthenticated = auth?.isAuthenticated;
 
-	const { register, handleSubmit, reset } = useForm();
+	useEffect(() => {
+			if (isAuthenticated) {
+				navigate("/userdashboard");
+			}
+		}, [isAuthenticated, navigate]);
 
 	return (
 		<div className="max-w-md mx-auto mt-12">
@@ -18,12 +29,12 @@ export const Login = () => {
 					try {
 						const response = await postData<ApiResponse>(endpoints.LOGIN, values);
 
-						if (!response.success || response.data === null) {
-							alert(response.message || "Credenciales inválidas");
-							return;
+						if (response.success &&  response.data) {
+							auth?.login(response.data as IUser); // Actualiza el contexto global
+							navigate("/userdashboard");
 						}
 						reset();
-						alert("Login exitoso");
+						
 						//console.log("Usuario logueado:", response);
 					} catch (error: unknown) {
 						// Captura el error lanzado por Axios
@@ -38,7 +49,7 @@ export const Login = () => {
 				<div>
 					<label className="block text-gray-700">Email</label>
 					<input type="email"
-						{...register("email", { required: "Este campo es obligatorio", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
+						{...registerForm("email", { required: "Este campo es obligatorio", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
 						className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2"
 						placeholder="Ingrese su email"
 						autoComplete="off"
@@ -47,7 +58,7 @@ export const Login = () => {
 				<div>
 					<label className="block text-gray-700">Contraseña</label>
 					<input type="password"
-						{...register("password", { required: "Este campo es obligatorio" })}
+						{...registerForm("password", { required: "Este campo es obligatorio" })}
 						className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2"
 						placeholder="Ingrese su contraseña"
 						autoComplete="off"

@@ -4,6 +4,7 @@ import { getData, ApiResponse, deleteData } from '../../services/axiosService';
 import { endpoints } from '../../services/endpoints';
 import { Loading } from '../../components';
 import { DeleteMedicationModal } from "../../components";
+import { FaTrash, FaEdit, FaEye, FaSearch } from "react-icons/fa";
 
 interface Medication {
 	id: string | number;
@@ -65,23 +66,23 @@ export const MedicationManager = () => {
 	};
 
 	const handleConfirmDelete = async () => {
-    if (selectedMedication) {
-        try {
-            const response = await deleteData<ApiResponse<Medication>>(endpoints.MEDICATION_DELETE(String(selectedMedication.id)));
-            if (response.success) {
-                // Actualiza la lista local eliminando el medicamento
-                setMedications(meds => meds.filter(med => med.id !== selectedMedication.id));
-            } else {
-                setError(response.message || "No se pudo eliminar el medicamento");
-            }
-		} catch {
-			setError("Error al eliminar el medicamento");
-		} finally {
-			setModalOpen(false);
-			setSelectedMedication(null);
+		if (selectedMedication) {
+			try {
+				const response = await deleteData<ApiResponse<Medication>>(endpoints.MEDICATION_DELETE(String(selectedMedication.id)));
+				if (response.success) {
+					// Actualiza la lista local eliminando el medicamento
+					setMedications(meds => meds.filter(med => med.id !== selectedMedication.id));
+				} else {
+					setError(response.message || "No se pudo eliminar el medicamento");
+				}
+			} catch {
+				setError("Error al eliminar el medicamento");
+			} finally {
+				setModalOpen(false);
+				setSelectedMedication(null);
+			}
 		}
-    }
-};
+	};
 
 	const handleCancelDelete = () => {
 		setModalOpen(false);
@@ -110,20 +111,25 @@ export const MedicationManager = () => {
 	return (
 		<div>
 			<h2 className="text-2xl text-sky-800 font-bold mb-6 text-center">Gestión de Medicamentos</h2>
-			<div className="flex justify-between items-center mb-4 ">
+			<div className="flex justify-between items-center mb-4">
 				<button
 					className="bg-sky-700 hover:bg-sky-800 text-white font-semibold py-2 px-4 rounded shadow"
 					onClick={() => { navigate('/medication/create') }}
 				>
 					+ Nuevo Medicamento
 				</button>
-				<input
-					type="text"
-					placeholder="Buscar medicamento..."
-					className="border border-sky-300 rounded px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-sky-400"
-					value={search}
-					onChange={e => setSearch(e.target.value)}
-				/>
+				<div className="relative w-122">
+					<input
+						type="text"
+						placeholder="Buscar por nombre, droga o laboratorio..."
+						className="text-black border border-sky-800 rounded px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-sky-700 pr-10"
+						value={search}
+						onChange={e => setSearch(e.target.value)}
+					/>
+					<span className="absolute right-3 top-2.5 text-sky-800 pointer-events-none">
+						<FaSearch />
+					</span>
+				</div>
 			</div>
 			<div className="overflow-x-auto rounded-lg shadow-lg border border-gray-300 ">
 				<table className="min-w-full bg-white text-sm text-blue-950 rounded-lg shadow-md">
@@ -139,8 +145,8 @@ export const MedicationManager = () => {
 							<th className="py-2 px-4 text-left">Troquel</th>
 							<th className="py-2 px-4 text-left">Categoría</th>
 							<th className="py-2 px-4 text-left">Detalles</th>
-							<th className="py-2 px-4 text-left">Acciones</th>
-							<th className="py-2 px-4 text-left">Eliminar</th>
+							<th className="py-2 px-4 text-left" colSpan={3}>Acciones</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -156,17 +162,21 @@ export const MedicationManager = () => {
 								<td className="py-2 px-4">{med.troquel}</td>
 								<td className="py-2 px-4">{med.categoryId}</td>
 								<td className="py-2 px-4">
-									<button onClick={() => navigate(`/medication/${med.id}`)} className="text-blue-600 hover:underline mr-2">Ver Detalles</button>
+									<button onClick={() => navigate(`/medication/${med.id}`)} className="text-blue-600 hover:underline mr-2 flex items-center gap-1">
+										<FaEye /> Ver
+									</button>
 								</td>
 								<td className="py-2 px-4">
-									<button onClick={() => { navigate(`/medication/${med.id}/edit`) }} className="text-blue-600 hover:underline mr-2">Editar</button>
+									<button onClick={() => { navigate(`/medication/${med.id}/edit`) }} className="text-blue-600 hover:underline mr-2 flex items-center gap-1">
+										<FaEdit /> Editar
+									</button>
 								</td>
 								<td className="py-2 px-4">
 									<button
-										className="text-red-600 hover:underline"
+										className="text-red-600 hover:underline flex items-center gap-1"
 										onClick={() => handleDeleteClick({ id: med.id, name: med.name })}
 									>
-										Eliminar
+										<FaTrash /> Eliminar
 									</button>
 								</td>
 							</tr>

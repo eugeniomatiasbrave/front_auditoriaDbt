@@ -65,7 +65,7 @@ export const Vademecum = () => {
 
 	return (
 		<div className="p-6">
-			<h2 className="text-2xl text-gray-800 font-bold mb-6">Vademécum</h2>
+			<h2 className="text-3xl text-sky-800 font-bold mb-6">Vademécum</h2>
 
 			{medications.length === 0 ? (
 				<p className="text-gray-600">No hay medicamentos disponibles.</p>

@@ -13,3 +13,11 @@ export interface IMedication {
   categoryId: number;
   description?: string;
 }
+
+
+export interface IUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}

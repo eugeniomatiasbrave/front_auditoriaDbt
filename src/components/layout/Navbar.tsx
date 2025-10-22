@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Navbar = () => {
-	
+	const auth = useContext(AuthContext);
+	const isAuthenticated = auth?.isAuthenticated;
 
 	return (
 		<nav className="bg-sky-900 text-white shadow-lg">
@@ -36,37 +39,43 @@ export const Navbar = () => {
 					</div>
 
 					<div className="flex items-center space-x-4">
-					
-							<>
-								<Link
-									to="/login"
-									className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
-								>
-									Iniciar Sesión
-								</Link>
-								<Link
-									to="/register"
-									className=" hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
-								>
-									Registrarse
-								</Link>
-							</>
-						
-							<>
-								<Link
-									to="/medication"
-									className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
-								>
-									Medicamentos
-								</Link>
-								<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
-									Perfil
-								</Link>
-								<Link to="/logout" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
-									Cerrar Sesión
-								</Link>
-							</>
-					
+						<>
+							{!isAuthenticated ? (
+								<>
+									<Link
+										to="/login"
+										className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
+									>
+										Iniciar Sesión
+									</Link>
+									<Link
+										to="/register"
+										className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors"
+									>
+										Registrarse
+									</Link>
+								</>
+							) : (
+								<>
+									<Link to="/userdashboard" className="hover:bg-gray-500 px-4 py-2 rounded font-medium transition-colors">
+										UserDashboard
+									</Link>
+									<Link
+										to="/medication"
+										className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors"
+									>
+										Medicamentos
+									</Link>
+									<Link to="/profile" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
+										Perfil
+									</Link>
+									<Link to="/logout" className="hover:bg-sky-600 px-3 py-2 rounded font-medium transition-colors">
+										Cerrar Sesión
+									</Link>
+								</>
+							)}
+						</>
+
 					</div>
 				</div>
 			</div>
