@@ -15,7 +15,7 @@ export const Profile = () => {
 	useEffect(() => {
 		const fetchUserProfile = async () => {
 			const response = await getData<ApiResponse<UserProfile>>(endpoints.USER_PROFILE);
-			if (response && response.data) {
+			if (response.success && response.data) {
 				setProfile(response.data);
 				console.log("Perfil cargado:", response.data);
 			}
