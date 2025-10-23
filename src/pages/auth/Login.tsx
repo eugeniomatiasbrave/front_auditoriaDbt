@@ -78,7 +78,7 @@ export const Login = () => {
 						{...registerForm("email", { required: "Este campo es obligatorio", pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
 						className="text-black mt-1 block w-full border border-gray-300 rounded-md p-2"
 						placeholder="Ingrese su email"
-						autoComplete="off"
+						autoComplete="on"
 					/>
 				</div>
 				<div>

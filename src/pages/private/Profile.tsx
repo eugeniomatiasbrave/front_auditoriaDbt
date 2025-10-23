@@ -17,6 +17,7 @@ export const Profile = () => {
 			const response = await getData<ApiResponse<UserProfile>>(endpoints.USER_PROFILE);
 			if (response && response.data) {
 				setProfile(response.data);
+				console.log("Perfil cargado:", response.data);
 			}
 		};
 		fetchUserProfile();
