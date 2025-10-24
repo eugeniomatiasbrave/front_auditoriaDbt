@@ -30,7 +30,7 @@ export const Login = () => {
 			 <button
                 type="button"
                 onClick={handleBack}
-                className="absolute top-1 right-1 text-xs bg-amber-300 border-amber-500 rounded text-gray-700 hover:text-sky-600 transition-colors px-3 py-1"
+                className="absolute top-1 right-1 text-xs bg-sky-600 border-sky-700 rounded text-white font-bold transition-colors px-1 hover:bg-white hover:text-sky-800 border"
             >
                 X
             </button>
