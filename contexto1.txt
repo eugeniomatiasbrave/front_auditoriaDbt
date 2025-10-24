@@ -1,0 +1,21 @@
+He realizado el despliegue del back en Railway y el front en Vercel.
+El back está desarrollado en Node.js con Express y el front en React. 
+Ambos proyectos están configurados para conectarse entre sí mediante variables de entorno que contienen 
+las URLs correspondientes.
+Por algun motivo, ya en produccion, el front no logra renderizar algunas paginas que reguieren autorizacion.
+Logro realizar el login y el registro, pero al intentar acceder a paginas protegidas 
+no se cargan correctamente.
+He verificado que las variables de entorno en Vercel están correctamente configuradas 
+con la URL del back en Railway.
+He revisado los logs Railway, recibe el token de autorización correctamente al loguearme.
+El navegador no muestra el token al loguearme como lo hacia en desarrollo.
+Almacenamiento del Token: Asegúrate de que el token de autorización se esté 
+almacenando correctamente en el front-end después del login. En desarrollo estoy usando
+cookies para almacenar el token. Verifica que en producción también 
+se esté haciendo esto correctamente y que el token esté disponible para las solicitudes posteriores.
+Verifica que las cookies estén siendo 
+establecidas con el atributo 'Secure' si estás usando HTTPS en producción.
+Además, asegúrate de que el atributo 'SameSite' esté configurado correctamente 
+para permitir el envío de cookies en solicitudes entre sitios.
+¿Podrías ayudarme a identificar qué podría estar causando este problema y cómo solucionarlo?
+ 

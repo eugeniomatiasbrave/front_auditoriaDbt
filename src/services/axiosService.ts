@@ -55,7 +55,9 @@ export const putData = async <T = unknown>(
   data: unknown
 ): Promise<T> => {
   try {
-    const response: AxiosResponse<T> = await api.put(url, data);
+    const response: AxiosResponse<T> = await api.put(url, data , {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
